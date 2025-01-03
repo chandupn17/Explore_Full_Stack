@@ -1,0 +1,8 @@
+#with this file we can ignore the files that we don't want to push to the repository
+#as we will ru comments such as 
+#npm init 
+# npm i axois
+#npm i dotenv 
+
+node_modules
+.env
