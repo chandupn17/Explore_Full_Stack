@@ -1,4 +1,4 @@
-class unknown{
+class ApiError extends Error{
     constructor(
         statusCode,
         message =" somthing went wrong ",
