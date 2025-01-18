@@ -1,7 +1,9 @@
 import mongoose, {Schema} from "mongoose";
 //{Schema} or we have to write mongoose.Schema
-import jwt from "jswebtoken";
-import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+//import bcrypt from "bcryptjs";
+  import bcrypt from 'bcryptjs';
+
 
 const userSchema = new Schema(
     {
@@ -59,9 +61,11 @@ userSchema.pre("save", async function(next){
     // it will decrypt and encrypt only when it is any modification in passwords 
     //negative check
     if(!this.isModified("password")) return next();
-    this.password =  await bcrypt.hash(this.password, 10);
+
+    this.password = await bcrypt.hash(this.password, 10);
     next();
 });
+
 userSchema.methods.isPasswordsCorrect = async function (password){
     return await bcrypt.compare(password, this.password); 
 }

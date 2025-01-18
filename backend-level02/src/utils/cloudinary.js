@@ -6,7 +6,7 @@ cloudinary.config({
     api_key: process.env.CLOUD_API_KEY, 
     api_secret: proccesss.env.CLOUD_API_KEY 
 });
-const uplodeonCoud = async (localFilePath)=>{
+const uplodeonCoudinary = async (localFilePath)=>{
     try{
         if(!localFilePath) return null
         // uplode the file on coludinary
@@ -26,4 +26,4 @@ const uplodeonCoud = async (localFilePath)=>{
     }
 
 };
-export {uplodeonCoud}
+export {uplodeonCoudinary}

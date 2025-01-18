@@ -6,3 +6,6 @@ class ApiResponse {
         this.success = this.success< 400;
     }
 }
+export {
+    ApiResponse
+}

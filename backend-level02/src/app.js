@@ -23,7 +23,7 @@ import userRouter from "./routes/user.routs.js";
 //app.use("/api/v1/user",userRouter); only when we 
 // dont have any middlewares and seperate routs
 
-
+app.get("/api/v1/user")
 
 app.use("/api/v1/user",userRouter);
 // https://localhost:8000//api/v1/user/rigester
