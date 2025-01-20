@@ -11,6 +11,7 @@
 
     }catch(error){
         console.log("error in connecting to database",error);
+        console.log(" error in ../db/index.js");
         //imp tpoic process.exit and so many 
         process.exit(1);
     }

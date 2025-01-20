@@ -28,7 +28,7 @@ const registerUser = asyncHandler( async (req, res)=>{
       throw new ApiError(400, "Please fill all fields");
    }
 
-   const existinguser = User.findOne({
+   const existinguser = await User.findOne({
      $or:[{username}, {email}]
    });
 
@@ -42,9 +42,15 @@ const registerUser = asyncHandler( async (req, res)=>{
   if(existinguser){
    throw new ApiError(409, "User already exists");
   } 
+
+
   //first property of the avatar                                                                
 const avatarLocalPath = req.files?.avatar[0]?.path;
 const coverImageLocalPath = req.files?.coverImage[0]?.path;
+
+console.log(req.files);
+console.log("avatarLocalPath : ",avatarLocalPath);
+console.log("coverImageLocalPath : ",coverImageLocalPath);
 
 if(!avatarLocalPath){
    throw new ApiError(400, "Please upload avatar");
@@ -52,12 +58,17 @@ if(!avatarLocalPath){
 const avatar = await uplodeonCoudinary(avatarLocalPath);
 const coverImage = await uplodeonCoudinary(coverImageLocalPath);
 
+
+            //ok
+console.log("Avatar received:", avatar);
+            
+
 if(!avatar){
 
    throw new ApiError(400, "Please upload avatar");
            }
 
-
+           console.log("ftttttttttttttttttttt");
 const user = await User.create({
        fullName,
        avatar : avatar.url,
@@ -66,6 +77,7 @@ const user = await User.create({
        password,
        username : username.toLowerCase()
 });
+
 
 const createdUser = await User.findById(user._id).select(
    "-password -refreshToken"

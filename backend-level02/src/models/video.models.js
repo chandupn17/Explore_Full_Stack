@@ -1,4 +1,4 @@
-import mongoose,{Schema} from "mongoose";
+import mongoose, {Schema} from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";//will work like plugin 
 const videoSchema = new Schema(
     {
