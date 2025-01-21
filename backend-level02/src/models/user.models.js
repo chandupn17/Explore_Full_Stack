@@ -9,7 +9,7 @@ const userSchema = new Schema(
     {
         username:{
             type:String,
-            requried: true,
+            required: true,
             unique:true,
             lowercase:true,
             trim:true,
@@ -18,7 +18,7 @@ const userSchema = new Schema(
         },
         email:{
             type: String,
-            requried: true,
+            required: true,
             unique:true,
             lowercase:true,
             trim:true
@@ -26,13 +26,13 @@ const userSchema = new Schema(
         },
         fullName:{
             type:String,
-            requried: true,
+            required: true,
             trim:true, 
             index:true
         },
         avatar:{
             type:String, //cloudinary url 
-            requried:true,
+            required:true,
         },
         coverImage:{
             type:String, //cloudinary url 
@@ -46,7 +46,7 @@ const userSchema = new Schema(
         ],
         password:{
             type:String,
-            requried:[true, 'password is frequired']
+            required:[true, 'password is frequired']
         },
         refreshTokens:{
             type:String
