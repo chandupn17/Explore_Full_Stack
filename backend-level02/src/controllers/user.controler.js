@@ -69,6 +69,8 @@ if(!avatar){
            }
 
            console.log("ftttttttttttttttttttt");
+
+//create user object
 const user = await User.create({
        fullName,
        avatar : avatar.url,

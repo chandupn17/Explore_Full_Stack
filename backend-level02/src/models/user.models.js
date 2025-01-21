@@ -70,32 +70,38 @@ userSchema.methods.isPasswordsCorrect = async function (password){
     return await bcrypt.compare(password, this.password); 
 }
 
-userSchema.methods.generateAccessToken = function (){
-    return jwt.sign({
+userSchema.methods.generateAccessToken = async function (){
+    return await jwt.sign({
         _id : this._id,
         email: this.email,
         username: this.username,
-        fullname: this.fullname
+        fullName: this.fullName
 
     },
     process.env.ACCESS_TOKEN_SECRET,
     {
-        expiresIn: ACCESS_TOKEN_EXPIRY
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRY
     }
     )
-   
+   // took 2 day to encouneter this error 
+   // before -  ACCESS_TOKEN_EXPIRY
+   // after -  process.env.ACCESS_TOKEN_EXPIRY
+   // and main problem was in index in atlas mongodb collection 
 };
 
-userSchema.methods.generateRefreshToken = function (){
-    return jwt.sign({
+userSchema.methods.generateRefreshToken = async function (){
+    return await jwt.sign({
         _id : this._id
 
     },
     process.env.REFRESH_TOKEN_SECRET,
     {
-        expiresIn: REFRESH_TOKEN_EXPIRY
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRY
     }
    )
+   // took 2 day to encouneter this error  same as above
+   // before -  ACCESS_TOKEN_EXPIRY
+   // after -  process.env.ACCESS_TOKEN_EXPIRY
 }
 
 export const User = mongoose.model("User", userSchema);
