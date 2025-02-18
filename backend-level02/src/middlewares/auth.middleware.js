@@ -1,17 +1,21 @@
-import { ApiError } from "../utils/ApiError";
-import { asyncHandler } from "../utils/asyncHandler";
+//import { ApiError } from "../utils/ApiError.js";
+import {ApiError} from "../utils/ApiError.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken";
-import { User } from "../models/user.models";
+import { User } from "../models/user.models.js";
 
-export const verifyJWT = asyncHandler(async (req,_,next)=>{
+//export
+  const verifyJWT = asyncHandler(async (req,_,next)=>{
 try {
+    console.log("-------------erroin auth middleware-----------");
+    // error starts here
     const token = req.cookies?.accessToken || req.header
-        ("Authorization")?.replace("bearer","");
+        ("Authorization")?.replace("Bearer", "");
         if(!token){
             throw new ApiError(400,"unauthorized request");
         }
-        const decodedToken = jwt.verify(token. proccess.env.ACCESS_TOKEN_SECRET);
-      
+        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        console.log("-------------erroin auth middleware-----------");
        const user = await User.findById(decodedToken?._id)
        .select("-password -refreshYoken");
        if(!user){
@@ -25,3 +29,6 @@ try {
     
 }
 });
+export {
+    verifyJWT
+}

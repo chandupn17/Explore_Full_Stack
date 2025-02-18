@@ -119,10 +119,14 @@ const loginUser = asyncHandler(async (req, res) => {
    //passwoed check 
    //access and refresh tocken 
    //send cookies (secure)
-   const{} = req.body;
+   const{email, username,password} = req.body;
+   console.log(email,username);
+   console.log( "Please fill all fields user or email and password");
 
-   if(!username || !password){
+
+   if(!(username && email)){
       throw new ApiError(400, "Please fill all fields user or email and password");
+      console.log( "Please fill all fields user or email and password");
    }
    //find user in db
    const user = await User.findOne({
@@ -132,6 +136,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
    if(!user){
       throw new ApiError(404, "User not found");
+      console.log("user not found in data base");
    }
    //check password
    //user obj for database -- obj for mongoose schema
@@ -167,9 +172,10 @@ const loginUser = asyncHandler(async (req, res) => {
 
    }          
 ); 
-
+//----log-out user----
 const logoutUser = asyncHandler(async(req,res)=>{
-User.findByIdAndUpdate(
+   console.log("-------------log out usrr -------------");
+   User.findByIdAndUpdate(
   await req.user._id,
    {
       $set:{
@@ -180,13 +186,12 @@ User.findByIdAndUpdate(
       new: true
    }
 )
-
+console.log("-------------log out usrr -------------");
 const options=
 {
    httpOnly: true,
    secure: true
 }
-
  return res
  .status(200)
  .clearCookie("accessToken",options)

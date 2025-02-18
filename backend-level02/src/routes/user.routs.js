@@ -1,7 +1,7 @@
 import { Router} from "express";
 import { loginUser, logoutUser, registerUser } from "../controllers/user.controler.js";
 import { upload } from "../middlewares/multer.middleware.js"
-import { verify } from "jsonwebtoken";
+//import { verify } from "jsonwebtoken";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
@@ -18,7 +18,7 @@ router.route("/register").post(
     ]),
     registerUser
     );
-router.route("/login").post(loginUser)
+router.route("/login").post(loginUser);
 
 //secured routs 
 //next() fro usage of middleware
