@@ -17,7 +17,7 @@ try {
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         console.log("-------------erroin auth middleware-----------");
        const user = await User.findById(decodedToken?._id)
-       .select("-password -refreshYoken");
+       .select("-password -refreshToken");
        if(!user){
         //todo : dissuss next vidio
         throw new ApiError(401,"invalid Accsess Token");
