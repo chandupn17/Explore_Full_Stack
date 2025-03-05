@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <title>tailwind</title>
+</head>
+<body class="bg-black">
+  <h1 class="text-3xl font-bold p-10 underline">
+    Hello world!
+  </h1>
+  <!-- Before -->
+<button class="text-black px-4 sm:px-8 py-2 sm:py-3 bg-sky-700 hover:bg-sky-800">Submit</button>
+<!-- After -->
+<button class="bg-sky-700 px-4 py-2 text-black hover:bg-sky-800 sm:px-8 sm:py-3">Submit</button>
+---------------------------------------------------
+
+<div class="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+  <img class="size-12 shrink-0" src="/img/logo.svg" alt="ChitChat Logo" />
+  <div>
+    <div class="text-xl font-medium text-black dark:text-white">ChitChat</div>
+    <p class="text-gray-500 dark:text-gray-400">You have a new message!</p>
+  </div>
+</div>
+<div class="h-10 w-100% bg-amber-50 text-black mt-10 hover:bg-black hover:text-white flex flex-col text-center"> the </div>
+</body>
+</html>
